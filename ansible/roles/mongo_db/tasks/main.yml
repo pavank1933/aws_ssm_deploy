@@ -1,0 +1,5 @@
+---
+# installing mongodb in particular ansible os family 
+
+- include: amazon.yml
+#  when: ansible_distribution == "Amazon Linux"

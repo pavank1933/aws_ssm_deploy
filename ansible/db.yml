@@ -1,0 +1,13 @@
+---
+# This Playbook would deploy the mongo_db
+
+- hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+    - mongo_db
+  vars:
+    redhat_url: "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz"
+    amazon_url: "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.2.tgz"

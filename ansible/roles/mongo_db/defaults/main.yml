@@ -1,0 +1,10 @@
+vars:
+   #mongodb version
+   mongodb_version: "3.4.2"
+
+   #tar file  for mongodb
+   mondodb_tar_url: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-{{mongodb_version}}.tgz
+
+   #tar file for Ubuntu
+   ubuntu_url: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-{{mongodb_version}}.tgz
+

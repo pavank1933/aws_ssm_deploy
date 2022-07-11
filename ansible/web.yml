@@ -1,0 +1,19 @@
+---
+# This Playbook would deploy the tomcat,nginx softwares
+
+- hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+    - tomcat
+    - nginx
+
+# - hosts: web_servers
+#   roles:
+#   - role: mongos
+
+# - hosts: app_servers
+#   tasks:
+#   - include: roles/mongod/tasks/shards.yml

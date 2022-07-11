@@ -1,0 +1,43 @@
+--- 
+- name: Download mongodb file
+  get_url:
+    url: "{{mondodb_tar_url}}"
+    dest: /home/ec2-user
+    mode: '0440'
+#- 
+#  name: "download tar file"
+#  shell: "curl -O {{mondodb_tar_url}}"
+- 
+  name: "Unzip tar file"
+  unarchive: "src=/home/ec2-user/mongodb-linux-x86_64-{{mongodb_version}}.tgz dest=/opt/ copy=no"
+- 
+  lineinfile: 
+    dest: /home/ec2-user/.bashrc
+    line: "export PATH=/opt/mongodb-linux-x86_64-{{mongodb_version}}/bin:$PATH"
+  name: "set mongo home in bashrc file"
+- 
+  lineinfile: 
+    dest: /home/ec2-user/.bashrc
+    line: "export MONGO_HOME=/opt/mongodb-linux-x86_64-{{mongodb_version}}/bin/mongod"
+  name: "set mongo path in bashrc file"
+- 
+  args: 
+    executable: /bin/bash
+  name: "execute source command to make the changes to effect"
+  shell: "source /home/ec2-user/.bashrc"
+- 
+  file: 
+    mode: 511
+    path: /data/db
+    state: directory
+  name: "create a database directory for mongodb"
+- 
+  name: "copy mongo.service file"
+  template: 
+    dest: /etc/systemd/system/mongo.service
+    src: mongo.service.rhel
+- 
+  name: "make sure mongo is started"
+  service: 
+    name: mongo
+    state: started

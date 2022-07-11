@@ -1,0 +1,14 @@
+# Here are variables related to the Tomcat installation
+
+http_port: 8080
+https_port: 8443
+
+# This will configure a default manager-gui user:
+
+admin_username: admin
+admin_password: adminsecret
+
+# This is used for the nginx server configuration, but access to the
+# web application site is not restricted by a named host.
+nginx_port: 80
+server_hostname: server.example.com
